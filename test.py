@@ -1,6 +1,6 @@
 import boto3
 
-def create_ec2_instance(ami_id, instance_type, security_group_id, key_name):
+def create_ec2_instance(ami_id, instance_type, security_group_id):
   """
   Creates an EC2 instance with the specified parameters.
 
@@ -28,19 +28,17 @@ def create_ec2_instance(ami_id, instance_type, security_group_id, key_name):
       MinCount=1,
       MaxCount=1,
       SecurityGroupIds=[security_group_id],
-      KeyName=key_name
   )
 
   # Return the instance ID
   return response['Instances'][0]['InstanceId']
 
 # Example usage (replace with your actual values)
-ami_id = "ami-xxxxxxxx"
+ami_id = "ami-04f8d7ed2f1a54b14"
 instance_type = "t2.micro"
-security_group_id = "sg-xxxxxxxx"
-key_name = "your_key_pair"
+security_group_id = "sg-0a041752e78758aec"
 
-instance_id = create_ec2_instance(ami_id, instance_type, security_group_id, key_name)
+instance_id = create_ec2_instance(ami_id, instance_type, security_group_id)
 
 if instance_id:
   print(f"Successfully created EC2 instance with ID: {instance_id}")
