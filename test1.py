@@ -7,7 +7,7 @@ ec2 = session.resource('ec2')
 image_id = "ami-0f58b397bc5c1f2e8"
 instance_type = 't2.micro'
 count = 1
-key_name = 'jenkinsBoto'
+key_name = 'Work'
 security_group = 'sg-0827fcdf7280d4731'
 
 try:
