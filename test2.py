@@ -15,6 +15,7 @@ instance_type = os.getenv('INSTANCE_TYPE')
 count = int(os.getenv('COUNT'))
 key_name = os.getenv('KEY_NAME')
 security_group = os.getenv('SECURITY_GROUP')
+instance_name = os.getenv('INSTANCE_NAME')  # Environment variable for the instance name
 
 try:
     instances = ec2.create_instances(
@@ -23,7 +24,11 @@ try:
         MinCount=count,
         MaxCount=count,
         KeyName=key_name,
-        SecurityGroupIds=[security_group]
+        SecurityGroupIds=[security_group], 
+        TagSpecifications=[{
+            'ResourceType': 'instance',
+            'Tags': [{'Key': 'Name', 'Value': instance_name}]
+        }]
     )
 
     print(f"Successfully created EC2 instance(s): {[instance.id for instance in instances]}")
