@@ -1,6 +1,9 @@
 import boto3
 
-session = boto3.session.Session()  # Optional: Create session for custom configuration
+# Specify the AWS region
+region_name = 'ap-south-1'  # Replace with your desired region
+
+session = boto3.session.Session(region_name=region_name)
 
 ec2 = session.resource('ec2')
 
